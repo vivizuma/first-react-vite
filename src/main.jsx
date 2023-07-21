@@ -6,8 +6,17 @@ import HtmlTest from "./HtmlTest.jsx";
 
 import "./index.css";
 
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function Greeting() {
+  return <Welcome name="sara" />;
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Greeting />
     <HtmlTest />
     <Hello />
 
