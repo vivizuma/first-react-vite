@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import Hello from "./Hello.jsx";
 import App from "./App.jsx";
 import HtmlTest from "./HtmlTest.jsx";
+import { v4 as uuidv4 } from "uuid";
 
 import "./index.css";
 
@@ -14,8 +15,36 @@ function Greeting() {
   return <Welcome name="sara" />;
 }
 
+function List(props) {
+  return (
+    <ul>
+      {props.animals.map((animal) => {
+        return animal.startsWith("L") && <li key={animal}>{animal}</li>;
+      })}
+    </ul>
+  );
+}
+
+function Animals() {
+  const animals = ["Lion", "Cow", "Snake", "Lizard"];
+
+  return (
+    <div>
+      <h1>Animals: </h1>
+      <List animals={animals} />
+    </div>
+  );
+}
+
+const todos = [
+  { task: "lift heavy stuff", id: uuidv4() },
+  { task: "clean shower window", id: uuidv4() },
+  { task: "learn react", id: uuidv4() },
+];
+console.log(todos);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Animals />
     <Greeting />
     <HtmlTest />
     <Hello />
