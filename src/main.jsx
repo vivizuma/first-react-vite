@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+
 import Hello from "./Hello.jsx";
 import App from "./App.jsx";
 import HtmlTest from "./HtmlTest.jsx";
@@ -14,7 +15,9 @@ function Welcome(props) {
 function Greeting() {
   return <Welcome name="sara" />;
 }
-
+function Heading(props) {
+  return <h2>{props.text}</h2>;
+}
 function List(props) {
   return (
     <ul>
@@ -42,13 +45,54 @@ const todos = [
   { task: "learn react", id: uuidv4() },
 ];
 console.log(todos);
+
+function Button(props) {
+  const buttonStyle = {
+    color: props.color,
+    fontSize: props.fontSize + "px",
+  };
+  return <button style={buttonStyle}>{props.text}</button>;
+}
+function Button2() {
+  return <button>Don't click me!</button>;
+}
+
+// STATE IN REACT
+// INTRODUCTION TO STATE
+// concepts: * State is a component's memory
+//* reconciliation algorithm: rerendering generates a new virtual dom element
+// the algo compares the new virtual dom to old one an determines the minimal set of
+// changes that need to occur to change the actual DOM
+
+const COLORS = ["pink", "green", "blue", "yellow", "purple"];
+
+function ColorsDiv(props) {
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  return <div className="block">sss</div>;
+}
+function SayHello(props) {
+  const greeting = "Hello ";
+  const greetings = ["Hey", "Yo", "Whaddup", "eyo"];
+  return (
+    <div>
+      {greeting}
+      {greetings[props.value] + ", "}
+      {props.text}
+    </div>
+  );
+}
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <SayHello text="John" value="2" />
+    <Heading text="Props" />
+    <Button text="Click Me!" color="blue" fontSize={12} />
+    <Button2 />
+    <Button text="Don't click me!" color="red" fontSize={12} />
     <Animals />
     <Greeting />
     <HtmlTest />
     <Hello />
-
-    <App />
+    <Heading text="State" />
+    <ColorsDiv />
   </React.StrictMode>
 );
