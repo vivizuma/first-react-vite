@@ -42,8 +42,25 @@ const todos = [
   { task: "learn react", id: uuidv4() },
 ];
 console.log(todos);
+
+function Btn() {
+  return <button>testy</button>;
+}
+//passing props
+function PropBtn(props) {
+  const buttonStyle = {
+    color: props.color,
+    fontSize: props.fontSize + "px",
+    background: props.background
+  };
+  return <button style={buttonStyle}>{props.text}</button>;
+}
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Btn />
+    <Btn />
+    <Btn />
+    <PropBtn text="Prop Btn" color="red" background="blue"   />
     <Animals />
     <Greeting />
     <HtmlTest />
